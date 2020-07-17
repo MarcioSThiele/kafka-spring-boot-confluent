@@ -1,0 +1,9 @@
+{
+  "type": "record",
+  "namespace": "com.thielem",
+  "name": "Message",
+  "version": "1",
+  "fields": [
+    { "name": "message", "type": "string" }
+    ]
+   }
