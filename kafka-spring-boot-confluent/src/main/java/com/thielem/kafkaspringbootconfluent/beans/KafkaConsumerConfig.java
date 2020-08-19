@@ -2,8 +2,6 @@ package com.thielem.kafkaspringbootconfluent.beans;
 
 import com.thielem.kafkaspringbootconfluent.handler.EventsErrorHandler;
 import lombok.RequiredArgsConstructor;
-import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.KafkaAdminClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -21,17 +19,8 @@ public class KafkaConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<String, Object> containerFactory = new ConcurrentKafkaListenerContainerFactory<>();
 
         containerFactory.setConsumerFactory(consumerFactory);
-        //containerFactory.setConcurrency(20);
-        //containerFactory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
-        //containerFactory.getContainerProperties().setPollTimeout(1);
         containerFactory.setErrorHandler(eventsErrorHandler);
 
         return containerFactory;
-    }
-
-    @Bean
-    AdminClient adminClient(ConsumerFactory<String, Object> consumerFactory){
-        AdminClient admin = KafkaAdminClient.create(consumerFactory.getConfigurationProperties());
-        return admin;
     }
 }
